@@ -1,0 +1,2 @@
+class AvailabilityStatusesController < ApplicationController
+end

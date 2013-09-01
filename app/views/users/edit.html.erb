@@ -1,0 +1,101 @@
+<%= form_for(@user, html: {class: "form-horizontal", role: "form"}) do |f| %>
+    <fieldset>
+      <legend>Rediger opplysninger for <%= @user.name %></legend>
+      <br />
+      <div class="form-group">
+        <%= f.label :name, "Navn:", {class: "col-lg-2 control-label"} %>
+        <div class="col-lg-10 controls">
+          <%= f.text_field :name, {class: "form-control"} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :username, "Brukernavn:", {class: "col-lg-2 control-label"} %>
+        <div class="col-lg-10 controls">
+
+          <%= f.text_field :username %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, "Passord:", {class: "col-lg-2 control-label"} %>
+        <div class="col-lg-10 controls">
+
+          <%= f.text_field :password %>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+
+        <div class="col-lg-offset-2 col-lg-10 controls">
+          <div class="checkbox">
+            <label for="user_admin">
+              <%= f.check_box :admin %> Adminbruker
+            </label>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :phone, "Telefon:", {class: "col-lg-2 control-label"} %>
+        <div class="col-lg-10 controls">
+
+          <%= f.text_field :phone %>
+        </div>
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :email, "Epost:", {class: "col-lg-2 control-label"} %>
+        <div class="col-lg-10 controls">
+
+          <%= f.text_field :email %>
+        </div>
+      </div>
+      <div class="form-group">
+
+        <%= f.label :started_date, "Startet:", {class: "col-lg-2 control-label"} %>
+        <div class="col-lg-10 controls">
+
+          <%= f.date_select :started_date %>
+        </div>
+      </div>
+      <div class="form-group">
+
+        <%= f.label :quit_date, "Sluttet:", {class: "col-lg-2 control-label"} %>
+        <div class="col-lg-10 controls">
+
+          <%= f.date_select :quit_date %>
+        </div>
+      </div>
+      <div class="form-group">
+
+        <div class="col-lg-offset-2 col-lg-10 controls">
+          <div class="checkbox">
+            <label for="user_active"><%= f.check_box :active %>Aktiv
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+
+        <%= f.label :comments, "Kommentarer:", {class: "col-lg-2 control-label"} %>
+        <div class="col-lg-10 controls">
+
+          <%= f.text_area :comments %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10 controls">
+          <%= f.submit(value="Lagre", {class:"btn btn-default"}) %>
+        </div>
+      </div>
+
+    </fieldset>
+<% end %>

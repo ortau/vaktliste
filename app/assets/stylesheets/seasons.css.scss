@@ -1,0 +1,12 @@
+// Place all the styles related to the seasons controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+table.seasons-table td.not_staffed {
+  background-color: red  !important;
+}
+table.seasons-table td.partially_staffed {
+  background-color: yellow  !important ;
+}
+table.seasons-table td.staffed {
+  background-color: #adff2f !important;
+}

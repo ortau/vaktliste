@@ -1,0 +1,29 @@
+<article>
+  <header>
+    <h1><%= @user.name %></h1>
+  </header>
+
+<p><%= link_to("Rediger opplysninger", rediger_vakt_path(@user)) %></p>
+
+<ul>
+  <li>Telefon: <%=  @user.phone  %></li>
+  <li>Epost: <%= @user.email  %></li>
+  <li>Brukernavn: <%=  @user.username  %></li>
+  <li>Passord: <%= @user.password  %></li>
+  <li>Admin: <%= @user.admin == true ? "Ja" : "Nei"  %></li>
+  <li>Sist oppdatert: <%= @user.updated_at  %></li>
+</ul>
+
+<p>
+Merknader: <%= @user.comments %>
+</p>
+
+<h3>Oppsatte vakter</h3>
+<ul>
+  <% @workdays.each do |w| %>
+     <li> <%= I18n.localize w.date, :format => :long  %> </li>
+  <% end %>
+</ul>
+
+</article>
+

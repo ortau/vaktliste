@@ -1,0 +1,94 @@
+<h1 xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+  <%= @season.name %>, frå <%= I18n.localize @season.from_date %> til <%= I18n.localize @season.to_date %> </h1>
+
+<table class="table seasons-table">
+  <thead>
+  <tr>
+    <th colspan="3">Fargeforklaring</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="not_staffed">Ingen oppsatte vakter</td>
+    <td class="partially_staffed">Berre ein vakt</td>
+    <td class="staffed">Fullt oppsatt</td>
+  </tr>
+  </tbody>
+</table>
+
+<table class="table table-striped seasons-table" border="1">
+  <% @season.open_weeks_with_days.each do |k, v| %>
+      <tr>
+        <th align="left" colspan="<%= v.length %>"> Veke: <%= k %>:</th>
+      </tr>
+      <tr>
+        <% v.each do |day| %>
+            <td><%= I18n.localize day.date, :format => :long %></td>
+        <% end %>
+      </tr>
+      <tr>
+        <% v.each do |day| %>
+            <td id="info_day_<%= day.id %>" class="<%= day.status_level %>">
+              <span id="person_1_day_<%= day.id %>" class="person_1">Vakt 1: <%= day.person_1.nil? ? "ingen" : day.person_1.name %> </span>
+              <br/>
+              <span id="person_2_day_<%= day.id %>" class="person_2">Vakt 2: <%= day.person_2.nil? ? "ingen" : day.person_2.name %> </span>
+            </td>
+        <% end %>
+      </tr>
+      <tr>
+        <% v.each do |day| %>
+            <td>
+              <% status = day.availability_status_for(current_user.id) %>
+              <form method="post" action="" role="form" class="form-inline">
+                <input type="hidden" value="<%= day.id %>" id="available_day_<%= day.id %>" class="day_field"/>
+                <input type="hidden" value="<%= day.id %>" id="available_user_<%= day.id %>" class="user_field"/>
+                <p><b>Er du tilgjengeleg?</b></p>
+                <label for="available_status_day_<%=day.id%>">
+                  <input id="available_status_day_<%=day.id%>" type="radio" value="<%= :available  %>" name="available" />
+                  Ja
+                </label>
+                <label for="unavailable_status_day_<%=day.id%>">
+                  <input id="unavailable_status_day_<%=day.id%>" type="radio" value="<%= :unavailable  %>" name="available" />
+                  Nei
+                </label>
+                <label for="undecided_status_day_<%=day.id%>">
+                  <input id="undecided_status_day_<%=day.id%>" type="radio" value="<%= :undecided  %>" name="available" checked="checked" />
+                  Veit ikkje
+                </label>
+                <div class="checkbox">
+                  <label for="wishlist_status_day_<%=day.id%>">
+                    <input name="on_wishlist" type="hidden" value="0" />
+                    <input id="wishlist_status_day_<%=day.id%>" type="checkbox" name="on_wishlist"
+                           value="1" <%= status.checked? %> />
+                    Ønsker spesielt å jobbe denne dagen
+                  </label>
+                </div>
+              </form>
+            <% end %>
+
+            </td>
+      </tr>
+      <% if current_user.is_admin? %>
+          <tr>
+            <% v.each do |day| %>
+                <td>
+
+                  <%= form_for(day, url: opprett_vakt_path, method: "patch") do |f| %>
+                      <input type="hidden" value="<%= day.id %>" id="day_<%= day.id %>" class="day_field"/>
+                      <select id="day_<%= day.id %>_person_1" name="person_1_id">
+                        <option>Velg vakt 1</option>
+                        <%= options_from_collection_for_select(@users, :id, :name) %>
+                        <option value="nil">Ingen</option>
+                      </select>
+                      <select id="day_<%= day.id %>_person_2" name="person_2_id">
+                        <option>Velg vakt 2</option>
+                        <%= options_from_collection_for_select(@users, :id, :name) %>
+                        <option value="nil">Ingen</option>
+                      </select>
+                  <% end %>
+                </td>
+            <% end %>
+          </tr>
+      <% end %>
+  <% end %>
+</table>
