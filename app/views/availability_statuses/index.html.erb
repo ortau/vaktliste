@@ -1,0 +1,41 @@
+<h1 xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+  <%= @season.name %>, frå <%= I18n.localize @season.from_date %> til <%= I18n.localize @season.to_date %> </h1>
+
+<table class="table table-striped table-condensed seasons-table" border="1">
+
+  <% @season.open_weeks_with_days.each do |k, v| %>
+      <tr>
+        <th align="left" colspan="<%= v.length %>"> Veke: <%= k %>:</th>
+      </tr>
+      <tr>
+      <% v.each do |day| %>
+      <% status = day.availability_status_for(current_user.id) %>
+            <td><b><%= I18n.localize day.date, :format => :long %></b>
+              <form method="post" id="<%= "status_form_#{status.id}" %>" action="" role="form" class="form-horizontal">
+                <input type="hidden" value="<%= status.id %>" id="available_status_id_<%= status.id %>" class="status_field"/>
+                <label for="available_<%=status.id%>">
+                  <input id="available_<%=status.id%>" type="radio" value="<%= :available  %>" name="available" />
+                  Er tilgjengeleg
+                </label>
+                <label for="unavailable_<%=status.id%>">
+                  <input id="unavailable_<%=status.id%>" type="radio" value="<%= :unavailable  %>" name="available" />
+                  Ikkje tilgjengeleg
+                </label>
+                <label for="undecided_<%=status.id%>">
+                  <input id="undecided_<%=status.id%>" type="radio" value="<%= :undecided  %>" name="available"  />
+                  Veit ikkje
+                </label>
+                <div class="checkbox">
+                  <label for="on_wishlist_id_<%=status.id%>">
+                    <input name="on_wishlist" type="hidden" value="0" />
+                    <input id="on_wishlist_id_<%=status.id%>" type="checkbox" name="on_wishlist"
+                           value="1" <%= status.checked? %> />
+                    Ønsker å jobbe denne dagen
+                  </label>
+                </div>
+              </form>
+            </td>
+      <% end %>
+      </tr>
+  <% end %>
+</table>

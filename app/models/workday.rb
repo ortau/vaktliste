@@ -27,7 +27,7 @@ class Workday < ActiveRecord::Base
   end
 
   def availability_info
-    availability_statuses
+    availability_statuses.all
   end
 
 end

@@ -1,8 +1,6 @@
 class WorkdaysController < ApplicationController
   def update
-    puts params
     @day = Workday.find(params[:id])
-    puts "Day: #{@day.date}"
     field = params[:person][:field]
     value = params[:person][:value]
 

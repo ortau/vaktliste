@@ -5,7 +5,14 @@ class AvailabilityStatus < ActiveRecord::Base
   STATUS = { available: 0, unavailable: 1, undecided: 2 }
 
   def available
-    STATUS.key(read_attribute(:available))
+    status = STATUS.key(read_attribute(:available))
+    if status == "available"
+      "Tilgjengeleg"
+    elsif status == "unavailable"
+      "Ikkje tilgjengeleg"
+    else
+      "Veit ikkje"
+    end
   end
 
   def available=(s)

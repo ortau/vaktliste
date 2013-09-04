@@ -38,34 +38,13 @@
       <tr>
         <% v.each do |day| %>
             <td>
-              <% status = day.availability_status_for(current_user.id) %>
-              <form method="post" action="" role="form" class="form-inline">
-                <input type="hidden" value="<%= day.id %>" id="available_day_<%= day.id %>" class="day_field"/>
-                <input type="hidden" value="<%= day.id %>" id="available_user_<%= day.id %>" class="user_field"/>
-                <p><b>Er du tilgjengeleg?</b></p>
-                <label for="available_status_day_<%=day.id%>">
-                  <input id="available_status_day_<%=day.id%>" type="radio" value="<%= :available  %>" name="available" />
-                  Ja
-                </label>
-                <label for="unavailable_status_day_<%=day.id%>">
-                  <input id="unavailable_status_day_<%=day.id%>" type="radio" value="<%= :unavailable  %>" name="available" />
-                  Nei
-                </label>
-                <label for="undecided_status_day_<%=day.id%>">
-                  <input id="undecided_status_day_<%=day.id%>" type="radio" value="<%= :undecided  %>" name="available" checked="checked" />
-                  Veit ikkje
-                </label>
-                <div class="checkbox">
-                  <label for="wishlist_status_day_<%=day.id%>">
-                    <input name="on_wishlist" type="hidden" value="0" />
-                    <input id="wishlist_status_day_<%=day.id%>" type="checkbox" name="on_wishlist"
-                           value="1" <%= status.checked? %> />
-                    Ønsker spesielt å jobbe denne dagen
-                  </label>
-                </div>
-              </form>
+              <p><b>Info om tilgjengelege vakter:</b></p>
+              <ul>
+                <% day.availability_info.each do |a| %>
+                   <li> <%= "#{a.user.name} (#{a.user.phone}): #{a.available} "  %></li>
+              <% end %>
+              </ul>
             <% end %>
-
             </td>
       </tr>
       <% if current_user.is_admin? %>

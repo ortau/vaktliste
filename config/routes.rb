@@ -25,6 +25,7 @@ Vaktliste::Application.routes.draw do
 
   post "workdays/:id" => "workdays#update"
   patch "workdays/:id" => "workdays#update"
+  post "availability_statuses/:id" => "availability_statuses#ajax_update"
 
 
 end
