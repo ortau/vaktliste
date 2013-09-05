@@ -6,9 +6,9 @@ class AvailabilityStatus < ActiveRecord::Base
 
   def available
     status = STATUS.key(read_attribute(:available))
-    if status == "available"
+    if status == :available
       "Tilgjengeleg"
-    elsif status == "unavailable"
+    elsif status == :unavailable
       "Ikkje tilgjengeleg"
     else
       "Veit ikkje"
@@ -19,13 +19,23 @@ class AvailabilityStatus < ActiveRecord::Base
     write_attribute(:available, STATUS[s])
   end
 
-  def checked?
+  def on_wishlist_checked
     empty = " "
     if on_wishlist
       "checked=\"checked\""
     else
       empty
     end
+  end
+
+
+  def selected_availability(selected)
+    empty = " "
+    status = STATUS.key(read_attribute(:available))
+    if status == selected.to_sym
+      return "checked=\"checked\""
+    end
+    return empty
   end
 
   def to_s

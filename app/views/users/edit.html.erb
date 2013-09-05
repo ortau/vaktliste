@@ -1,3 +1,4 @@
+<% if current_user.id == @user.id || current_user.is_admin? %>
 <%= form_for(@user, html: {class: "form-horizontal", role: "form"}) do |f| %>
     <fieldset>
       <legend>Rediger opplysninger for <%= @user.name %></legend>
@@ -27,6 +28,7 @@
       </div>
 
 
+      <% if current_user.is_admin? %>
       <div class="form-group">
 
         <div class="col-lg-offset-2 col-lg-10 controls">
@@ -38,6 +40,7 @@
           </div>
         </div>
       </div>
+      <% end %>
 
       <div class="form-group">
 
@@ -56,22 +59,7 @@
           <%= f.text_field :email %>
         </div>
       </div>
-      <div class="form-group">
 
-        <%= f.label :started_date, "Startet:", {class: "col-lg-2 control-label"} %>
-        <div class="col-lg-10 controls">
-
-          <%= f.date_select :started_date %>
-        </div>
-      </div>
-      <div class="form-group">
-
-        <%= f.label :quit_date, "Sluttet:", {class: "col-lg-2 control-label"} %>
-        <div class="col-lg-10 controls">
-
-          <%= f.date_select :quit_date %>
-        </div>
-      </div>
       <div class="form-group">
 
         <div class="col-lg-offset-2 col-lg-10 controls">
@@ -98,4 +86,5 @@
       </div>
 
     </fieldset>
+<% end %>
 <% end %>

@@ -17,6 +17,7 @@ class Workday < ActiveRecord::Base
   def availability_status_for(user_id)
     status = AvailabilityStatus.where("user_id = ? and workday_id = ?", user_id, id).first
     if status.nil?
+      puts "status is nil"
       status = AvailabilityStatus.new
       status.user_id = user_id
       status.workday_id = id
@@ -27,7 +28,8 @@ class Workday < ActiveRecord::Base
   end
 
   def availability_info
-    availability_statuses.all
+    # availability_statuses.to_a
+    AvailabilityStatus.where("workday_id = ?",  id).to_a
   end
 
 end

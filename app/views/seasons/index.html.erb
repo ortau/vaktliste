@@ -41,7 +41,8 @@
               <p><b>Info om tilgjengelege vakter:</b></p>
               <ul>
                 <% day.availability_info.each do |a| %>
-                   <li> <%= "#{a.user.name} (#{a.user.phone}): #{a.available} "  %></li>
+                   <li> <%= "#{a.user.name} (#{a.user.phone}): #{a.available}.  "  %>
+                     <% if a.on_wishlist %> <i style="cursor: pointer;" title="Ønsker spesielt å jobbe denne dagen." class="icon-heart"></i><% end %></li>
               <% end %>
               </ul>
             <% end %>
