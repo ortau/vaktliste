@@ -38,15 +38,18 @@
       <tr>
         <% v.each do |day| %>
             <td>
-              <p><b>Info om tilgjengelege vakter:</b></p>
-              <ul>
+              <a href="javascript:void();" onclick="$('#tilgjengelige_vakter_<%=day.id%>').toggle(100);">
+                <b>Info om tilgjengelege vakter </b><i class="icon-expand-alt"></i></a>
+              <ul id="tilgjengelige_vakter_<%= day.id %>" class="tilgjengelege_vakter_liste list-unstyled">
                 <% day.availability_info.each do |a| %>
-                   <li> <%= "#{a.user.name} (#{a.user.phone}): #{a.available}.  "  %>
-                     <% if a.on_wishlist %> <i style="cursor: pointer;" title="Ønsker spesielt å jobbe denne dagen." class="icon-heart"></i><% end %></li>
-              <% end %>
+                    <li><b><%= "#{a.user.name}"%></b> <%= "(#{a.user.phone}):" %><br/><%= a.available %>
+                      <% if a.on_wishlist %>
+                          <i style="cursor: pointer;" title="Ønsker spesielt å jobbe denne dagen." class="icon-heart"></i>
+                      <% end %></li>
+                <% end %>
               </ul>
-            <% end %>
-            </td>
+        <% end %>
+        </td>
       </tr>
       <% if current_user.is_admin? %>
           <tr>
