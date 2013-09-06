@@ -22,7 +22,7 @@ class Season < ActiveRecord::Base
   end
 
   def open_weeks
-    weeks ||= Hash.new
+    weeks = Hash.new
     week = from_date.cweek
 
     for i in 0..number_of_open_weeks
@@ -33,7 +33,7 @@ class Season < ActiveRecord::Base
   end
 
   def open_weeks_with_days
-    weeks ||= Hash.new
+    weeks = Hash.new
     week = from_date.cweek
 
     for i in 0..number_of_open_weeks
