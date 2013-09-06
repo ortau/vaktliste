@@ -3,7 +3,7 @@
     <fieldset>
       <legend>Registrer ny bruker</legend>
       <br />
-      <% if current_user && current_user.is_admin? %>
+      <% ## if current_user && current_user.is_admin? %>
     <div class="form-group">
       <%= f.label :name, "Navn:", {class: "col-lg-2 control-label"} %>
       <div class="col-lg-10 controls">
@@ -83,9 +83,9 @@
         <%= f.submit(value="Lagre", {class:"btn btn-default"}) %>
       </div>
     </div>
-      <%else%>
+      <%##else%>
        <p>Bare brukere med administrator-rettigheter kan registrere nye badevakter.</p>
-      <% end %>
+      <% ##end %>
 
 </fieldset>
 <% end %>
