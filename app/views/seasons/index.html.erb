@@ -16,7 +16,8 @@
   </tbody>
 </table>
 
-<table class="table table-striped seasons-table" border="1">
+<div class="table-responsive">
+<table class="table table-striped seasons-table">
   <% @season.open_weeks_with_days.each do |k, v| %>
       <tr>
         <th align="left" colspan="<%= v.length %>"> Veke: <%= k %>:</th>
@@ -75,3 +76,4 @@
       <% end %>
   <% end %>
 </table>
+</div>
