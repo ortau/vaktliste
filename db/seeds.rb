@@ -6,4 +6,3 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 season = Season.create(name: 'Haust 2013', from_date:'2013-09-03', to_date:'2013-12-31', open_days:'2,4,5,6')
-season.init_workdays_for_season()
