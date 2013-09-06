@@ -50,7 +50,7 @@
           <div class="container nav-collapse">
             <ul class="nav">
               <li><%= link_to "Badevakter", "/vakter"  %></li>
-              <li><%= link_to "Registrer ny badevakt", "/vakter/ny"  %></li>
+              <li><%= link_to "Registrer ny bruker", "/vakter/ny"  %></li>
               <li><%= link_to "Min tilgjengelighet", "/availability_statuses"  %></li>
               <% if current_user %>
                   <li> <%= link_to "Logga inn som: #{current_user.name}", "/vakter/#{current_user.id}" %></li>
