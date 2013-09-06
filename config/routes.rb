@@ -27,7 +27,4 @@ Vaktliste::Application.routes.draw do
   patch "workdays/:id" => "workdays#update"
   post "availability_statuses/:id" => "availability_statuses#ajax_update"
 
-  get "seasons/days/create" => "seasons#create_days_for_current_season"
-
-
 end
