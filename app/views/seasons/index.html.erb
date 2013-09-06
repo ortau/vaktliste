@@ -51,7 +51,7 @@
         <% end %>
         </td>
       </tr>
-      <% if current_user.is_admin? %>
+      <% if current_user && current_user.is_admin? %>
           <tr>
             <% v.each do |day| %>
                 <td>

@@ -3,7 +3,7 @@
     <h1><%= @user.name %></h1>
   </header>
 
-<% if current_user.id == @user.id || current_user.is_admin? %>
+<% if (current_user && current_user.id == @user.id) || (current_user && current_user.is_admin?) %>
 <p><%= link_to("Rediger opplysninger", rediger_vakt_path(@user)) %></p>
 <% end %>
 <ul>

@@ -1,4 +1,4 @@
-<% if current_user.id == @user.id || current_user.is_admin? %>
+<% if current_user && current_user.id == @user.id || current_user && current_user.is_admin? %>
 <%= form_for(@user, html: {class: "form-horizontal", role: "form"}) do |f| %>
     <fieldset>
       <legend>Rediger opplysninger for <%= @user.name %></legend>
@@ -28,7 +28,7 @@
       </div>
 
 
-      <% if current_user.is_admin? %>
+      <% if current_user && current_user.is_admin? %>
       <div class="form-group">
 
         <div class="col-lg-offset-2 col-lg-10 controls">
